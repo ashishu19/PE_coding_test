@@ -1,0 +1,5 @@
+_sourcecategory="myfile.log"
+| where _raw matches "/api/data"
+| parse "response_time=*ms" as response_time
+| where toInt(response_time) > 3000
+| count as slow_requests
